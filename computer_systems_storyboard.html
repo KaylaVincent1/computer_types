@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Choosing the Right Computer System — Storyboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Patrick+Hand&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE7D6;
+    --paper-dark:#E4DAC4;
+    --ink:#201C1A;
+    --red:#D7263D;
+    --blue:#1B4F72;
+    --yellow:#F2B705;
+    --teal:#0E7C7B;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      radial-gradient(rgba(32,28,26,0.05) 1px, transparent 1.2px);
+    background-size:10px 10px;
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    padding:28px 16px 60px;
+  }
+  .wrap{max-width:1100px;margin:0 auto;}
+
+  header{
+    text-align:center;
+    margin-bottom:34px;
+  }
+  header .kicker{
+    font-family:'Patrick Hand', cursive;
+    font-size:1.15rem;
+    color:var(--blue);
+    transform:rotate(-1.2deg);
+    display:inline-block;
+    margin-bottom:2px;
+  }
+  header h1{
+    font-family:'Bangers', cursive;
+    letter-spacing:1px;
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    line-height:1.05;
+    margin:4px 0 8px;
+    color:var(--ink);
+    -webkit-text-stroke:1.5px var(--ink);
+    text-shadow: 3px 3px 0 var(--red);
+  }
+  header p{
+    font-family:'Patrick Hand', cursive;
+    font-size:1.15rem;
+    max-width:560px;
+    margin:0 auto;
+    color:#4a423c;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(12, 1fr);
+    gap:22px;
+  }
+
+  .panel{
+    position:relative;
+    background:#fbf8f0;
+    border:3px solid var(--ink);
+    border-radius:6px;
+    padding:18px 18px 16px;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .panel.tilt-a{ transform:rotate(-0.6deg); }
+  .panel.tilt-b{ transform:rotate(0.55deg); }
+
+  /* scale mapping: physical size of device -> panel width */
+  .p1{grid-column:span 4;}
+  .p2{grid-column:span 5;}
+  .p3{grid-column:span 6;}
+  .p4{grid-column:span 7;}
+  .p5{grid-column:span 9;}
+  .p6{grid-column:span 10;}
+  .p7{grid-column:span 12;}
+
+  .frame-num{
+    position:absolute;
+    top:-20px; left:-14px;
+    width:44px; height:44px;
+    background:var(--red);
+    color:#fbf8f0;
+    border:3px solid var(--ink);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bangers', cursive;
+    font-size:1.5rem;
+    transform:rotate(-8deg);
+    box-shadow:3px 3px 0 var(--ink);
+  }
+
+  .panel-body{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .icon-box{
+    flex:0 0 auto;
+    width:96px;height:96px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .icon-box svg{width:100%;height:100%;}
+
+  .text-col{flex:1 1 220px;min-width:220px;}
+  .sys-name{
+    font-family:'Bangers', cursive;
+    font-size:1.4rem;
+    letter-spacing:0.5px;
+    margin:0 0 2px;
+  }
+  .illustration-idea{
+    font-family:'Patrick Hand', cursive;
+    font-size:1.02rem;
+    color:#4a423c;
+    margin:0 0 10px;
+  }
+
+  .bubble{
+    position:relative;
+    background:#fff;
+    border:2.5px solid var(--ink);
+    border-radius:16px;
+    padding:10px 14px;
+    font-family:'Patrick Hand', cursive;
+    font-size:1.15rem;
+    line-height:1.3;
+    margin:0 0 12px;
+  }
+  .bubble::after{
+    content:"";
+    position:absolute;
+    left:26px; bottom:-13px;
+    width:0;height:0;
+    border:9px solid transparent;
+    border-top-color:#fff;
+    border-bottom:0;
+    filter:drop-shadow(0 2px 0 var(--ink));
+  }
+
+  .stats{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .chip{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.78rem;
+    font-weight:600;
+    padding:5px 9px 5px 7px;
+    border:2px solid var(--ink);
+    border-radius:999px;
+    background:#fff;
+    white-space:nowrap;
+  }
+  .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;}
+  .dot.speed{background:var(--teal);}
+  .dot.port{background:var(--blue);}
+  .dot.store{background:var(--yellow);}
+
+  /* ============ SUMMARY PANEL ============ */
+  .summary-panel{
+    margin-top:8px;
+  }
+  .summary-title{
+    font-family:'Bangers', cursive;
+    font-size:1.7rem;
+    text-align:center;
+    margin:2px 0 4px;
+    color:var(--ink);
+  }
+  .summary-sub{
+    font-family:'Patrick Hand', cursive;
+    text-align:center;
+    color:#4a423c;
+    margin:0 0 20px;
+    font-size:1.05rem;
+  }
+  .device-row{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+    margin-bottom:6px;
+  }
+  .device-row .d{
+    display:flex;flex-direction:column;align-items:center;
+    gap:4px;
+    font-size:0.68rem;
+    font-weight:700;
+    text-align:center;
+  }
+  .device-row .d svg{width:34px;height:34px;}
+
+  .trend{
+    margin:20px 0;
+  }
+  .trend-label{
+    font-weight:700;
+    font-size:0.85rem;
+    margin-bottom:6px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .trend-label .dot{width:11px;height:11px;}
+  .trend-bar-wrap{
+    position:relative;
+    height:26px;
+    border:2px solid var(--ink);
+    border-radius:6px;
+    overflow:hidden;
+    background:repeating-linear-gradient(90deg, #fff 0 1px, transparent 1px 40px);
+  }
+  .trend-bar{
+    position:absolute;top:0;bottom:0;
+    height:100%;
+  }
+  .trend-bar.increase{
+    left:0;width:100%;
+    background:linear-gradient(90deg, #fff, var(--fill));
+  }
+  .trend-bar.decrease{
+    left:0;width:100%;
+    background:linear-gradient(90deg, var(--fill), #fff);
+  }
+  .trend-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);
+    font-family:'Bangers',cursive;
+    font-size:0.95rem;
+    color:var(--ink);
+  }
+  .trend-arrow.right{right:8px;}
+  .trend-arrow.left{left:8px;}
+
+  footer{
+    text-align:center;
+    margin-top:34px;
+    font-family:'Patrick Hand', cursive;
+    color:#6b6259;
+    font-size:0.95rem;
+  }
+
+  @media (max-width:760px){
+    .p1,.p2,.p3,.p4,.p5,.p6,.p7{grid-column:span 12;}
+    .device-row{grid-template-columns:repeat(4,1fr);}
+    .device-row .d:nth-child(5),.device-row .d:nth-child(6),.device-row .d:nth-child(7){grid-column:span 1;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="kicker">Computer Fundamentals — Objective 2</span>
+    <h1>SEVEN SIZES, ONE JOB:<br>MOVING DATA</h1>
+    <p>A storyboard comparing computer systems by processing speed, portability and storage capacity.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- Frame 1: Smartphone -->
+    <div class="panel tilt-a p1">
+      <div class="frame-num">1</div>
+      <div class="panel-body">
+        <div class="icon-box">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="4">
+            <rect x="34" y="10" width="32" height="80" rx="6" fill="#fff"/>
+            <line x1="34" y1="76" x2="66" y2="76"/>
+            <circle cx="50" cy="82" r="2.4" fill="#201C1A"/>
+            <rect x="40" y="20" width="20" height="34" fill="#0E7C7B" opacity="0.35"/>
+          </svg>
+        </div>
+        <div class="text-col">
+          <p class="sys-name">Mobile Device (Smartphone)</p>
+        </div>
+      </div>
+      <div class="bubble">"I fit in your pocket! Great portability, but I have less storage and processing power than larger computers."</div>
+      <div class="stats">
+        <span class="chip"><span class="dot speed"></span>Speed: Low–Moderate</span>
+        <span class="chip"><span class="dot port"></span>Portability: Very High</span>
+        <span class="chip"><span class="dot store"></span>Storage: Low–Moderate</span>
+      </div>
+    </div>
+
+    <!-- Frame 2: Tablet -->
+    <div class="panel tilt-b p2">
+      <div class="frame-num">2</div>
+      <div class="panel-body">
+        <div class="icon-box">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="4">
+            <rect x="18" y="14" width="64" height="72" rx="6" fill="#fff"/>
+            <circle cx="50" cy="79" r="2.4" fill="#201C1A"/>
+            <rect x="26" y="22" width="48" height="46" fill="#1B4F72" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="text-col">
+          <p class="sys-name">Mobile Computer (Tablet)</p>
+        </div>
+      </div>
+      <div class="bubble">"I'm bigger than a phone and useful for reading, learning, and entertainment."</div>
+      <div class="stats">
+        <span class="chip"><span class="dot speed"></span>Speed: Moderate</span>
+        <span class="chip"><span class="dot port"></span>Portability: High</span>
+        <span class="chip"><span class="dot store"></span>Storage: Moderate</span>
+      </div>
+    </div>
+
+    <!-- Frame 3: Laptop -->
+    <div class="panel tilt-a p3">
+      <div class="frame-num">3</div>
+      <div class="panel-body">
+        <div class="icon-box">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="4">
+            <rect x="20" y="24" width="60" height="38" rx="3" fill="#fff"/>
+            <rect x="26" y="30" width="48" height="26" fill="#F2B705" opacity="0.3"/>
+            <path d="M12 72 L88 72 L80 62 L20 62 Z" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="text-col">
+          <p class="sys-name">Laptop Computer</p>
+        </div>
+      </div>
+      <div class="bubble">"I balance power and portability, making me ideal for school and work."</div>
+      <div class="stats">
+        <span class="chip"><span class="dot speed"></span>Speed: Moderate–High</span>
+        <span class="chip"><span class="dot port"></span>Portability: High</span>
+        <span class="chip"><span class="dot store"></span>Storage: Moderate–High</span>
+      </div>
+    </div>
+
+    <!-- Frame 4: Desktop -->
+    <div class="panel tilt-b p4">
+      <div class="frame-num">4</div>
+      <div class="panel-body">
+        <div class="icon-box">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="4">
+            <rect x="14" y="14" width="52" height="38" rx="2" fill="#fff"/>
+            <rect x="19" y="19" width="42" height="26" fill="#D7263D" opacity="0.25"/>
+            <line x1="40" y1="52" x2="40" y2="60"/>
+            <line x1="28" y1="62" x2="52" y2="62"/>
+            <rect x="70" y="18" width="16" height="46" rx="2" fill="#fff"/>
+            <circle cx="78" cy="58" r="2" fill="#201C1A"/>
+          </svg>
+        </div>
+        <div class="text-col">
+          <p class="sys-name">Desktop Computer</p>
+        </div>
+      </div>
+      <div class="bubble">"I stay in one place, but I offer stronger performance and more storage."</div>
+      <div class="stats">
+        <span class="chip"><span class="dot speed"></span>Speed: High</span>
+        <span class="chip"><span class="dot port"></span>Portability: Low (fixed)</span>
+        <span class="chip"><span class="dot store"></span>Storage: High</span>
+      </div>
+    </div>
+
+    <!-- Frame 5: Server -->
+    <div class="panel tilt-a p5">
+      <div class="frame-num">5</div>
+      <div class="panel-body">
+        <div class="icon-box">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="4">
+            <rect x="24" y="10" width="52" height="20" rx="2" fill="#fff"/>
+            <rect x="24" y="34" width="52" height="20" rx="2" fill="#fff"/>
+            <rect x="24" y="58" width="52" height="20" rx="2" fill="#fff"/>
+            <circle cx="32" cy="20" r="2" fill="#0E7C7B"/>
+            <circle cx="32" cy="44" r="2" fill="#0E7C7B"/>
+            <circle cx="32" cy="68" r="2" fill="#0E7C7B"/>
+            <line x1="42" y1="20" x2="68" y2="20"/>
+            <line x1="42" y1="44" x2="68" y2="44"/>
+            <line x1="42" y1="68" x2="68" y2="68"/>
+          </svg>
+        </div>
+        <div class="text-col">
+          <p class="sys-name">Server</p>
+        </div>
+      </div>
+      <div class="bubble">"I provide services and store data for many users at the same time."</div>
+      <div class="stats">
+        <span class="chip"><span class="dot speed"></span>Speed: Very High</span>
+        <span class="chip"><span class="dot port"></span>Portability: Very Low</span>
+        <span class="chip"><span class="dot store"></span>Storage: Very High</span>
+      </div>
+    </div>
+
+    <!-- Frame 6: Mainframe -->
+    <div class="panel tilt-b p6">
+      <div class="frame-num">6</div>
+      <div class="panel-body">
+        <div class="icon-box">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="4">
+            <rect x="10" y="18" width="24" height="64" rx="2" fill="#fff"/>
+            <rect x="38" y="18" width="24" height="64" rx="2" fill="#fff"/>
+            <rect x="66" y="18" width="24" height="64" rx="2" fill="#fff"/>
+            <rect x="15" y="24" width="14" height="10" fill="#D7263D" opacity="0.3"/>
+            <rect x="43" y="24" width="14" height="10" fill="#D7263D" opacity="0.3"/>
+            <rect x="71" y="24" width="14" height="10" fill="#D7263D" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="text-col">
+          <p class="sys-name">Mainframe Computer</p>
+        </div>
+      </div>
+      <div class="bubble">"I process huge amounts of data for banks, governments, and large organisations."</div>
+      <div class="stats">
+        <span class="chip"><span class="dot speed"></span>Speed: Extremely High</span>
+        <span class="chip"><span class="dot port"></span>Portability: None</span>
+        <span class="chip"><span class="dot store"></span>Storage: Extremely High</span>
+      </div>
+    </div>
+
+    <!-- Frame 7: Supercomputer -->
+    <div class="panel tilt-a p7">
+      <div class="frame-num">7</div>
+      <div class="panel-body">
+        <div class="icon-box">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="4">
+            <rect x="6" y="30" width="18" height="50" fill="#fff"/>
+            <rect x="27" y="20" width="18" height="60" fill="#fff"/>
+            <rect x="48" y="14" width="18" height="66" fill="#fff"/>
+            <rect x="69" y="20" width="18" height="60" fill="#fff"/>
+            <rect x="10" y="36" width="10" height="6" fill="#F2B705" opacity="0.5"/>
+            <rect x="31" y="26" width="10" height="6" fill="#F2B705" opacity="0.5"/>
+            <rect x="52" y="20" width="10" height="6" fill="#F2B705" opacity="0.5"/>
+            <rect x="73" y="26" width="10" height="6" fill="#F2B705" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="text-col">
+          <p class="sys-name">Supercomputer</p>
+        </div>
+      </div>
+      <div class="bubble">"I am the fastest computer system and solve complex scientific problems."</div>
+      <div class="stats">
+        <span class="chip"><span class="dot speed"></span>Speed: Highest</span>
+        <span class="chip"><span class="dot port"></span>Portability: None</span>
+        <span class="chip"><span class="dot store"></span>Storage: Massive</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ SUMMARY PANEL ============ -->
+  <div class="panel summary-panel tilt-b p7" style="margin-top:26px;">
+    <div class="frame-num" style="background:var(--yellow); color:var(--ink);">★</div>
+    <p class="summary-title">SO... WHICH ONE DO YOU NEED?</p>
+    <p class="summary-sub">Same seven systems, read left to right — watch how each measure changes</p>
+
+    <div class="device-row">
+      <div class="d"><svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="6"><rect x="34" y="10" width="32" height="80" rx="6"/></svg>Smartphone</div>
+      <div class="d"><svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="6"><rect x="18" y="14" width="64" height="72" rx="6"/></svg>Tablet</div>
+      <div class="d"><svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="6"><rect x="20" y="24" width="60" height="38" rx="3"/><path d="M12 72 L88 72 L80 62 L20 62 Z"/></svg>Laptop</div>
+      <div class="d"><svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="6"><rect x="14" y="14" width="52" height="38" rx="2"/><rect x="70" y="18" width="16" height="46" rx="2"/></svg>Desktop</div>
+      <div class="d"><svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="6"><rect x="24" y="10" width="52" height="20" rx="2"/><rect x="24" y="34" width="52" height="20" rx="2"/><rect x="24" y="58" width="52" height="20" rx="2"/></svg>Server</div>
+      <div class="d"><svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="6"><rect x="10" y="18" width="24" height="64" rx="2"/><rect x="38" y="18" width="24" height="64" rx="2"/><rect x="66" y="18" width="24" height="64" rx="2"/></svg>Mainframe</div>
+      <div class="d"><svg viewBox="0 0 100 100" fill="none" stroke="#201C1A" stroke-width="6"><rect x="6" y="30" width="18" height="50"/><rect x="27" y="20" width="18" height="60"/><rect x="48" y="14" width="18" height="66"/><rect x="69" y="20" width="18" height="60"/></svg>Super&shy;computer</div>
+    </div>
+
+    <div class="trend">
+      <div class="trend-label"><span class="dot speed"></span>Processing Speed</div>
+      <div class="trend-bar-wrap">
+        <div class="trend-bar increase" style="--fill:var(--teal);"></div>
+        <span class="trend-arrow left">LOW</span>
+        <span class="trend-arrow right">HIGH →</span>
+      </div>
+    </div>
+
+    <div class="trend">
+      <div class="trend-label"><span class="dot port"></span>Portability</div>
+      <div class="trend-bar-wrap">
+        <div class="trend-bar decrease" style="--fill:var(--blue);"></div>
+        <span class="trend-arrow left">← HIGH</span>
+        <span class="trend-arrow right">LOW</span>
+      </div>
+    </div>
+
+    <div class="trend">
+      <div class="trend-label"><span class="dot store"></span>Storage Capacity</div>
+      <div class="trend-bar-wrap">
+        <div class="trend-bar increase" style="--fill:var(--yellow);"></div>
+        <span class="trend-arrow left">LOW</span>
+        <span class="trend-arrow right">HIGH →</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>Computer Fundamentals · Objective 2 — distinguishing computer systems by speed, storage &amp; portability</footer>
+
+</div>
+</body>
+</html>
